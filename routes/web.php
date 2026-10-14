@@ -1,21 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TitleController;
 use App\Http\Controllers\OrganizationController;
-use App\Http\Controllers\CommunityController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\StaffController;
-use App\Http\Controllers\ActivitiesController;
+use App\Http\Controllers\GamingChartController;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
+
+// หน้าแรก Redirect ไปที่ Staff Index
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('staff.index');
 });
 
-// Resource Routes สำหรับทั้ง 6 ระบบ
-Route::resource('/title', TitleController::class);
-Route::resource('/organization', OrganizationController::class);
-Route::resource('/community', CommunityController::class);
-Route::resource('/tag', TagController::class);
-Route::resource('/staff', StaffController::class);
-Route::resource('/activities', ActivitiesController::class);
+// Route สำหรับงานเดิม (Staff Management System - w07)
+Route::resource('staff', StaffController::class);
+Route::resource('title', TitleController::class);
+Route::resource('organization', OrganizationController::class);
+
+// Step 5: Route สำหรับงาน w10 (Gaming & Esports Community Report)
+Route::get('/gaming-chart', [GamingChartController::class, 'index'])->name('gaming.chart');
