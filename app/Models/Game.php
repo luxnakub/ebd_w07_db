@@ -1,0 +1,7 @@
+<?php
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+
+class Game extends Model {
+    protected $fillable = ['genre_id', 'game_title', 'developer', 'release_year', 'platform'];
+}

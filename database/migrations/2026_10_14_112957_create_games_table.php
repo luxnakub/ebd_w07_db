@@ -8,16 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('players', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->string('player_name');
             $table->foreignId('genre_id')->constrained('genres')->onDelete('cascade');
+            $table->string('game_title', 150);
+            $table->string('developer', 100)->nullable();
+            $table->integer('release_year')->nullable();
+            $table->string('platform', 100)->default('Mobile');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('players');
+        Schema::dropIfExists('games');
     }
 };
